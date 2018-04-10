@@ -1,4 +1,4 @@
-# xStorage 初步构想和总体思路
+# xStorage 初步构想
 
 **<p align="right">Paul 2018-3-15</p>**
  
