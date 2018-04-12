@@ -4,41 +4,7 @@
  
 ***
 ## 目录
-- [xStorage 初步构想和总体思路](#xstorage----------)
-  * [目录](#--)
-  * [一、初步构想](#------)
-    + [1. xStorage 定位](#1-xstorage---)
-    + [2. xStorage 特性](#2-xstorage---)
-      - [Decentralized (去中心化)](#decentralized-------)
-      - [Safe](#safe)
-      - [Anonymity & Privacy(匿名)](#anonymity---privacy----)
-      - [Cheap & Efficient](#cheap---efficient)
-      - [Open & BitCoin Motivate](#open---bitcoin-motivate)
-  * [二、相关前沿项目及其优劣分析](#--------------)
-    + [1. [IPFS](https://ipfs.io/) (Inter Planetary File System)](#1--ipfs--https---ipfsio----inter-planetary-file-system-)
-      - [Advantage](#advantage)
-      - [Disadvantage](#disadvantage)
-    + [2. [ZeroNet](https://zeronet.io/)](#2--zeronet--https---zeronetio--)
-      - [Advantage](#advantage-1)
-      - [Disadvantage](#disadvantage-1)
-    + [3. [Twister](http://twister.net.co/)](#3--twister--http---twisternetco--)
-    + [4. [Mysterium Network](https://mysterium.network/)](#4--mysterium-network--https---mysteriumnetwork--)
-    + [5. [FIGTOO](http://www.figtoo.com/#/) 无花果](#5--figtoo--http---wwwfigtoocom--------)
-      - [Advantage](#advantage-2)
-      - [Disadvantage](#disadvantage-2)
-    + [6. Google File System (GFS)](#6-google-file-system--gfs-)
-    + [7. General Parallel File System (GPFS)](#7-general-parallel-file-system--gpfs-)
-    + [8. Lustre](#8-lustre)
-    + [9. [Ceph](https://ceph.com/)](#9--ceph--https---cephcom--)
-    + [10. [NDN](https://named-data.net/) (Named Data Net)](#10--ndn--https---named-datanet----named-data-net-)
-  * [三、涉及的关键问题及当前的在研项目](#-----------------)
-    + [1. 提高存储性能](#1-------)
-    + [2. 解决用户匿名和信息私有](#2------------)
-  * [四、落地推进的总体思路](#-----------)
-    + [1. 构建软硬件总体框架，分层次选定关键问题](#1--------------------)
-    + [2. 最小化系统边界，分步骤实现原型（协议）](#2--------------------)
-    + [3. 进度安排](#3-----)
-  * [Reference](#reference)
+[toc]
 ***
 
 ## 一、初步构想
