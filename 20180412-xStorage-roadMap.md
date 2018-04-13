@@ -86,7 +86,7 @@
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal align=left style='text-align:left'>（<span lang=EN-US>1</span>）确定了研发<span
-  lang=EN-US>xStorage</span>产品构想，并调研相关技术和项目现状，评估必要性与可行性，梳理细化处<span lang=EN-US>xStorage</span>在开源项目的基础上的增量和区别。</p>
+  lang=EN-US>xStorage</span>产品构想，并调研相关技术和项目现状，评估必要性与可行性，梳理细化出<span lang=EN-US>xStorage</span>在开源项目的基础上的增量和区别。</p>
   </td>
  </tr>
  <tr style='page-break-inside:avoid'>
