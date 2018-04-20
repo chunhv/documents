@@ -1,7 +1,7 @@
 # xStorage 关键技术
 
 **<p align="right">Paul 2018-3-19</p>**
- 
+
 ***
 ## 目录
 [toc]
@@ -13,29 +13,53 @@
 
 #### 1. 分布式系统特征
 
-**概念**：分布式系统是其组件分步在联网的计算机上，组件之间通过传递消息进行通信和动作协调的系统；
+- **概念**：分布式系统是其组件分步在联网的计算机上，组件之间通过传递消息进行通信和动作协调的系统；
 
-**特征**：组件的并发性、缺乏全局时钟、组件故障的独立性；
+- **特征**：组件的并发性、缺乏全局时钟、组件故障的独立性；
 
-**挑战**：处理组件的异构性、开放性、安全性、可伸缩性、故障处理、组件的并发性、透明性和提供服务质量；
-    
-信息资源的安全性包括三个部分：机密性（防止泄露给未授权的个人）、完整性（防止被改变或被破坏）、可用性（防止对访问资源的手段的干扰）；
-    
-可伸缩分步式系统key problem：控制物理资源的开销、控制性能损失、防止软件资源用尽、避免性能瓶颈；
-    
-故障处理key problem：检测故障、掩盖故障、容错、故障恢复、冗余；
-    
-透明性：访问透明性、位置透明性、并发透明性、复制透明性、故障透明性、移动透明性、性能透明性、伸缩透明性
-        
+- **挑战**：处理组件的异构性、开放性、安全性、可伸缩性、故障处理、组件的并发性、透明性和提供服务质量；
+
+- 信息资源的安全性包括三个部分：机密性（防止泄露给未授权的个人）、完整性（防止被改变或被破坏）、可用性（防止对访问资源的手段的干扰）；
+
+- 可伸缩分步式系统key problem：控制物理资源的开销、控制性能损失、防止软件资源用尽、避免性能瓶颈；
+
+- 故障处理key problem：检测故障、掩盖故障、容错、故障恢复、冗余；
+
+- 透明性：访问透明性、位置透明性、并发透明性、复制透明性、故障透明性、移动透明性、性能透明性、伸缩透明性
+
 #### 2. 系统模型
 
-**模型**：物理模型、体系结构模型、基础模型（交互模型、故障模型、安全模型）
+- **模型**：物理模型、体系结构模型、基础模型（交互模型、故障模型、安全模型）
 
-分布式系统的困难和威胁：使用模式的多样性、系统环境的多样性、内部问题、外部威胁
+- 分布式系统的困难和威胁：使用模式的多样性、系统环境的多样性、内部问题、外部威胁
 
-分布式系统的负载平衡重点：优化相邻节点间的交互、适应高度动态的主机可用性、在具有不同信任体系的环境下保持数据的安全性、匿名、可否认能力和对审查的抵抗
+- 分布式系统的负载平衡重点：优化相邻节点间的交互、适应高度动态的主机可用性、在具有不同信任体系的环境下保持数据的安全性、匿名、可否认能力和对审查的抵抗
 
-路由覆盖的主要任务：路由请求给对象、插入对象、删除对象、节点的增加和移除
+- 路由覆盖的主要任务：路由请求给对象、插入对象、删除对象、节点的增加和移除
+
+#### 3. 安全性设计
+
+- 进行安全性设计时必须假设处于最坏的情况下：（1）暴露的接口；（2）不安全的网络；（3）限制保密的时间和范围；（4）攻击者能够获得算法和程序代码；（5）攻击者可能访问大量资源；（6）使可信库最小化
+
+- 安全敏感程序中必须使用审计的方法
+
+- 安全机制基于公钥（非对称）密码学和秘钥（对称）密码学，RSA是使用最广泛的非对称加密算法，DES直到最近才是最广泛对称加密算法
+
+#### 4. 分布式文件系统
+
+- 分布式文件系统的需求：（1）透明性（访问、位置、移动、性能、伸缩）；（2）并发文件更新；（3）文件复制；（4）硬件和操作系统异构性；（5）容错；（6）一致性；（7）安全性；（8）效率
+
+#### 5. 分步式事务
+
+- 一个客户发起的事务会操作在多个不同的服务器上的对象上，一个分布式事务是指涉及多个不同服务器独立提交。
+
+- 分布式事务的并发控制：每个服务器对自己的对象应用本地的并发控制，以保证事务在本地是串行化的，还要保证全局串行化，如何实现这点与是否使用加锁、时间戳排序或乐观并发控制有关。
+
+- 有两种构造分布式事务的方式：按平面事务构造和按嵌套事务构造；
+
+- 基于事务的应用通常在长生命周期和存储信息的完整性方面有很强的需求，但很多情况下它们对响应时间的要求不高。
+
+- 复制对象是在分布式系统中获得具有高性能、高可用和容错性质的服务的重要手段。
 
 
 ## Chapter 2、Preliminary Key Knowleadge
@@ -59,51 +83,57 @@
     - 基于P2P技术的网络电视：沸点、PPStream、 PPLive、 QQLive、 SopCast等。
 - DHT这类结构最大的问题是DHT的维护机制较为复杂，尤其是结点频繁加入退出造成的网络波动（Churn）会极大增加DHT的维护代价。DHT所面临的另外一个问题是DHT仅支持精确关键词匹配查询，无法支持内容/语义等复杂查询。
 - 不同拓扑结构的P2P网络优缺点
+
 <table border="1" align="center" cellpadding="0" cellspacing="1">
   <tr>
-    <td width="124" valign="top"><p align="left">比较标准／拓扑结构</p></td>
-    <td width="95" valign="top"><p align="left">中心化拓扑</p></td>
-    <td width="92" valign="top"><p align="left">全分布式非结构化拓扑</p></td>
-    <td width="81" valign="top"><p align="left">全分布式结构化拓扑</p></td>
-    <td width="50" valign="top"><p align="left">半分布式拓扑</p></td>
+    <td width="20%" valign="top"><p align="left">比较标准／拓扑结构</p></td>
+    <td width="20%" valign="top"><p align="left">中心化拓扑</p></td>20%
+    <td width="20%" valign="top"><p align="left">全分布式非结构化拓扑</p></td>
+    <td width="20%" valign="top"><p align="left">全分布式结构化拓扑</p></td>
+    <td width="20%" valign="top"><p align="left">半分布式拓扑</p></td>
   </tr>
   <tr>
-    <td width="124" valign="top"><p align="left">可扩展性</p></td>
-    <td width="95" valign="top"><p align="left">差</p></td>
-    <td width="92" valign="top"><p align="left">差</p></td>
-    <td width="81" valign="top"><p align="left">好</p></td>
-    <td width="50" valign="top"><p align="left">中</p></td>
+    <td width="20%" valign="top"><p align="left">可扩展性</p></td>
+    <td width="20%" valign="top"><p align="left">差</p></td>
+    <td width="20%" valign="top"><p align="left">差</p></td>
+    <td width="20%" valign="top"><p align="left">好</p></td>
+    <td width="20%" valign="top"><p align="left">中</p></td>
   </tr>
   <tr>
-    <td width="124" valign="top"><p align="left">可靠性</p></td>
-    <td width="95" valign="top"><p align="left">差</p></td>
-    <td width="92" valign="top"><p align="left">好</p></td>
-    <td width="81" valign="top"><p align="left">好</p></td>
-    <td width="50" valign="top"><p align="left">中</p></td>
+    <td width="20%" valign="top"><p align="left">可靠性</p></td>
+    <td width="20%" valign="top"><p align="left">差</p></td>
+    <td width="20%" valign="top"><p align="left">好</p></td>
+    <td width="20%" valign="top"><p align="left">好</p></td>
+    <td width="20%" valign="top"><p align="left">中</p></td>
   </tr>
   <tr>
-    <td width="124" valign="top"><p align="left">可维护性</p></td>
-    <td width="95" valign="top"><p align="left">最好</p></td>
-    <td width="92" valign="top"><p align="left">最好</p></td>
-    <td width="81" valign="top"><p align="left">好</p></td>
-    <td width="50" valign="top"><p align="left">中</p></td>
+    <td width="20%" valign="top"><p align="left">可维护性</p></td>
+    <td width="20%" valign="top"><p align="left">最好</p></td>
+    <td width="20%" valign="top"><p align="left">最好</p></td>
+    <td width="20%" valign="top"><p align="left">好</p></td>
+    <td width="20%" valign="top"><p align="left">中</p></td>
   </tr>
   <tr>
-    <td width="124" valign="top"><p align="left">发现算法效率</p></td>
-    <td width="95" valign="top"><p align="left">最高</p></td>
-    <td width="92" valign="top"><p align="left">中</p></td>
-    <td width="81" valign="top"><p align="left">高</p></td>
-    <td width="50" valign="top"><p align="left">中</p></td>
+    <td width="20%" valign="top"><p align="left">发现算法效率</p></td>
+    <td width="20%" valign="top"><p align="left">最高</p></td>
+    <td width="20%" valign="top"><p align="left">中</p></td>
+    <td width="20%" valign="top"><p align="left">高</p></td>
+    <td width="20%" valign="top"><p align="left">中</p></td>
   </tr>
   <tr>
-    <td width="124" valign="top"><p align="left">复杂查询</p></td>
-    <td width="95" valign="top"><p align="left">支持</p></td>
-    <td width="92" valign="top"><p align="left">支持</p></td>
-    <td width="81" valign="top"><p align="left">不支持</p></td>
-    <td width="50" valign="top"><p align="left">支持</p></td>
+    <td width="20%" valign="top"><p align="left">复杂查询</p></td>
+    <td width="20%" valign="top"><p align="left">支持</p></td>
+    <td width="20%" valign="top"><p align="left">支持</p></td>
+    <td width="20%" valign="top"><p align="left">不支持</p></td>
+    <td width="20%" valign="top"><p align="left">支持</p></td>
   </tr>
 </table>
+
 - P2P搜索技术中最重要的研究成果应该是基于Small World理论的非结构化搜索算法和基于DHT的结构化搜索算法。尤其是DHT及其搜索技术为资源的组织与查找提供了一种新的方法，在近年来的P2P研究领域成为热点。
+
+- P2P分布式存储系统（文件共享与下载）是一个用于对等网络的数据存储系统，它可以提供高效率的、鲁棒的和负载平衡的文件存取功能。对于存储系统,用户关心数据的定位、搜索以及路由的效率，安全性也是重要的因素。集中方式在很多情况下不再适用这种大规模数据存储的要求,这就需要一个新的体系来管理系统中的数据。P2P分布式存储系统就是解决这样的问题。这些研究包括全分布式存储系统：Oceanstore,Past和FreeHaven等。其中，基于超级点结构的半分布式P2P应用如KaZaa、Edonkey、Morpheus、Bit Torrent等也属于P2P共享存储的范畴，并且用户数量急剧增加。Oceanstore和Past都提供了一种有效的广域网存储模型。它们的底层都建立了一个代价上限为logN的路由策略。Past则是面向一个相对简单而紧凑的概念，它采用Pastry提供的路由机制,试图利用网络中闲置的存储节点建立一个更为完善的存储语义。FreeHaven则建立了一个详细的匿名体系,用来防止潜在的恶意攻击。
+
+- 基于结构化的分布式哈希表的路由机制无法解决：（1）经过hash之后，位置信息被破坏，来自同一个子网的节点hash结果可能相距甚远；（2）DHT系统无法利用应用本身的问题，很多应用的数据本身是按照层次结构组织的，hash之后，层次信息丢失
 
 ## Chapter 3、Modle & Algorithm
 
@@ -112,7 +142,7 @@
 
 
 
-### 1. Pastry 系统
+### 2. Pastry 系统
 
 #### （1）路由算法：
 
@@ -146,18 +176,11 @@ MSPastry 性能结果：RDP值来度量发生在路由层的额外开销，为�
 
 MSPastry 开销结果：额外网络负载少于每分钟两条消息，但存在初始安装的开销
 
-### 2. Tapestry 系统
+### 3. Tapestry 系统
 
 #### （1）
 
-### Kademlia DHT
+### 4. Sun网络文件系统
 
 
-### S Kademlia DHT
-
-
-### Merkle Tree
-
-### Merkle Directed Acyclic Graph
-
-### Pas
+### 5. Google Case
