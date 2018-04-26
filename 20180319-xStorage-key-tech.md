@@ -61,7 +61,6 @@
 
 - 复制对象是在分布式系统中获得具有高性能、高可用和容错性质的服务的重要手段。
 
-
 ## Chapter 2、Preliminary Key Knowleadge
 
 ### 1. p2p file system
