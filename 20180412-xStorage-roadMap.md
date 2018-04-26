@@ -1,7 +1,7 @@
 ## xStorage RoadMap (项目开发路线)
 
-**<p align="right">Paul 2018-4-11</p>**
- 
+**<p align="right">Paul 2018-4-12</p>**
+
 ***
 ## 目录
 [toc]
@@ -376,5 +376,3 @@
 <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
 
 </div>
-
-
